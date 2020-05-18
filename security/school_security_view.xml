@@ -1,0 +1,59 @@
+<odoo>
+
+    <!-- Main Category -->
+    <record id="school_groups" model="ir.module.category">
+        <field name="name">School</field>
+    </record>
+
+    <!-- School Manager Category -->
+    <record id="school_manager_group" model="res.groups">
+        <field name="name">Manager</field>
+        <field name="category_id"
+               ref="school_groups" />
+    </record>
+
+    <!-- School Student Category -->
+    <record id="school_student_group" model="res.groups">
+        <field name="name">Student</field>
+        <field name="category_id"
+               ref="school_groups" />
+    </record>
+    
+    <!-- School Parent Category -->
+    <record id="school_parent_group" model="res.groups">
+        <field name="name">Parent</field>
+        <field name="category_id"
+               ref="school_groups" />
+    </record>
+
+    <!-- School Teacher Category -->
+    <record id="school_teacher_group" model="res.groups">
+        <field name="name">Teacher</field>
+        <field name="category_id"
+               ref="school_groups" />
+    </record>
+
+    <record model="ir.rule" id="view_degree_rule">
+        <field name="name">Degree</field>
+        <field name="model_id" ref="model_school_degree" />
+        <field name="groups"
+            eval="[(4, ref('school.school_student_group')),
+                   (4, ref('school.school_parent_group')),
+                   (4, ref('school.school_teacher_group'))]" />
+        <field name="domain_force"> [ '|','|',('user_id','=', user.id), 
+                                         ('student.parent.user_id', '=', user.id),
+                                         ('teacher.user_id', '=', user.id)]</field>
+    </record>
+
+    <record model="ir.rule" id="view_student_rule">
+        <field name="name">student</field>
+        <field name="model_id" ref="model_school_student" />
+        <field name="groups"
+            eval="[(4, ref('school.school_parent_group'))]" />
+        <field name="domain_force"> [('parent.user_id','=', user.id)]</field>
+    </record>
+    
+
+</odoo>
+
+  

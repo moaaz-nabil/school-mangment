@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Menu Actions -->
+    <!-- Student Action -->
+    <record id="school_student_action_view" model="ir.actions.act_window">
+        <field name="name">Students</field>
+        <field name="res_model">school.student</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">kanban,tree,form</field>
+    </record>
+
+    <!-- Parent Action -->
+    <record id="school_parent_action_view" model="ir.actions.act_window">
+        <field name="name">Parents</field>
+        <field name="res_model">school.parents</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">kanban,tree,form</field>
+    </record>
+
+    <!-- Teachers Action -->
+    <record id="school_teachers_action_view" model="ir.actions.act_window">
+        <field name="name">Teachers</field>
+        <field name="res_model">school.teacher</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">kanban,tree,form</field>
+    </record>
+
+    <!-- Subject Action -->
+    <record id="school_subject_action" model="ir.actions.act_window">
+        <field name="name">Subject</field>
+        <field name="res_model">school.subject</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Degree Action -->
+    <record id="school_degree_action" model="ir.actions.act_window">
+        <field name="name">Degree</field>
+        <field name="res_model">school.degree</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
+
+
+    <!-- Top Menu -->
+    <menuitem
+        id="school_top_menu_m"
+        name="School"
+        sequence="2"/>
+
+
+
+    <!-- Student Menu  -->
+    <menuitem
+        id="school_student_menu_m"
+        name="Student"
+        action="school_student_action_view"
+        parent="school_top_menu_m"
+        sequence="0"/>
+
+    <!-- Parent Menu -->
+    <menuitem
+        id="school_parents_menu"
+        name="Parents"
+        action="school_parent_action_view"
+        parent="school_top_menu_m"
+        sequence="1"/>
+
+    <!-- Teacher Menu -->
+    <menuitem
+        id="school_teachers_menu"
+        name="Teachers"
+        action="school_teachers_action_view"
+        parent="school_top_menu_m"
+        sequence="2"/>
+
+    <!-- Subject Menu -->
+    <menuitem
+        id="school_subject_menu"
+        name="Subjects"
+        action="school_subject_action"
+        parent="school_top_menu_m"
+        sequence="3"/>
+
+    <!-- Degree View  -->
+    <menuitem
+        id="school_degree_menu"
+        name="Degree"
+        action="school_degree_action"
+        parent="school_top_menu_m"
+        sequence="4"/>
+</odoo>

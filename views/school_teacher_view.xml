@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- School Teacher Tree View -->
+    <record id="school_teacher_tree_view" model="ir.ui.view">
+        <field name="name">Teachers</field>
+        <field name="model">school.teacher</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" string="Name" />
+                <field name="phone" string="Phone" />
+                <field name="birth_date" string="Birth Date" />
+                <field name="teacher_id" string="Teacher ID" />
+                <field name="nationality" string="Nationality" />
+                <field name="email" string="Email" />
+                <field name="gender" string="Gender" />
+            </tree>
+        </field>
+    </record>
+    
+    <!-- School Teacher Form View -->
+    <record id="school_teacher_view_form1" model="ir.ui.view">
+        <field name="name">Teachers</field>
+        <field name="model">school.teacher</field>
+        <field name="arch" type="xml">
+            <form string="Teacher">
+                <header>
+                    <button string="Create Teacher User"
+                            name="create_teacher_user" 
+                            type="object" 
+                            class="oe_highlight"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="teacher_picture" widget="image" />
+                        </group>    
+                        <group>
+                            <field name="name" string="Name" />
+                            <field name="phone" string="Phone" />
+                            <field name="birth_date" string="Birth Date" />
+                            <field name="teacher_id" string="Teacher ID" />
+                            <field name="nationality" string="Nationality" />
+                            <field name="email" string="Email" />
+                            <field name="gender" string="Gender" />
+                            <field name="user_id" />
+                        </group>
+                        <group>
+                             <label for="address_countery" string="Address"/>
+                            <div class="adress_format">
+                                <field name="country_id">Address Countery</field>
+                                <field name="address_state" placeholder="State...."  style="width: 40%" domain="[('country_id', '=', country_id)]" >State</field>
+                                <field name="address_street" placeholder="Street...." style="width: 40%" ></field>
+                                <field name="address_house_num" placeholder="House Number...." style="width: 40%"></field>
+                            </div>          
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+  
+    <!-- School Teacher kanban View -->
+    <record id="school_teacher_view_kanban" model="ir.ui.view">
+        <field name="name">Teacher</field>
+        <field name="model">school.teacher</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <field name="name" />
+                <field name="id" />
+                <field name="teacher_id" />
+                <field name="gender" />
+                <field name="teacher_picture" />
+                <field name="email" />
+                <field name="phone" />
+                <templates>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="oe_kanban_global_click o_res_partner_kanban">
+                                <div class="o_kanban_image">
+                                    <t t-if="record.teacher_picture.value">
+                                        <img t-att-src="kanban_image('school.teacher', 'teacher_picture', record.id.value)" alt="Student"/>
+                                    </t>
+                                    <t t-if="!record.teacher_picture.value">
+                                        <img t-att-src="_s + &quot;/base/static/img/avatar.png&quot;" alt="Student"/>
+                                    </t>
+                                </div>
+                                <div class="oe_kanban_details">
+                                    <h4>
+                                        <a type="open">
+                                            <field name="name"/>
+                                        </a>
+                                    </h4>
+                                    <ul>
+                                        <li t-if="record.gender.raw_value">
+                                            <field name="gender"/>
+                                        </li>
+                                        <li t-if="record.phone.raw_value">
+                                            <field name="phone"/>
+                                        </li>
+                                        <li t-if="record.email.raw_value">
+                                            <a t-attf-href="mailto:#{record.email.value}">
+                                                <field name="email"/>
+                                            </a>
+                                        </li>
+                                        <li t-if="record.teacher_id.raw_value">
+                                            <field name="teacher_id"/>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+</odoo>

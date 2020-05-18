@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Subject Sequence -->
+    <record id="seq_subject" model="ir.sequence">
+        <field name="name">Subject Sequence</field>
+        <field name="code">subject.sequence</field>
+        <field name="prefix">SU</field>
+        <field name="company_id" eval="False"/>
+    </record>
+
+
+</odoo>

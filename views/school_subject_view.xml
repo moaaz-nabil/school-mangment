@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Search subject View Tree -->
+        <record id="school_subject_tree_search" model="ir.ui.view">
+            <field name="name">Subject Search View</field>
+            <field name="model">school.subject</field>
+            <field name="arch" type="xml">
+                <search>
+                    <group expand="0" string="Group By Level">
+                        <filter name="level" string="Level" context="{'group_by':'level'}" />
+                    </group>
+                </search> 
+            </field>
+        </record>
+
+    <!-- School Subject Tree View -->
+    <record id="school_subject_tree_view" model="ir.ui.view">
+        <field name="name">Subject</field>
+        <field name="model">school.subject</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+                <field name="code" />
+                <field name="total_degree" />
+                <field name="pass_degree" />
+                <field name="level" />
+                <field name="his_teacher" />
+            </tree>
+        </field>
+    </record>
+
+    <!-- School Subject Form View -->
+    <record id="school_teacher_view_form" model="ir.ui.view">
+        <field name="name">Teachers</field>
+        <field name="model">school.subject</field>
+        <field name="arch" type="xml">
+            <form string="Teachers">
+                <sheet>
+                    <group>
+                        <field name="name" />
+                        <field name="code" />
+                        <field name="total_degree" />
+                        <field name="pass_degree" />
+                        <field name="level" />
+                        <field name="his_teacher" />
+                    </group>
+                    
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+</odoo>

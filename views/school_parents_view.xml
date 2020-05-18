@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- School Parent Tree View -->
+    <record id="school_parent_tree_view" model="ir.ui.view">
+        <field name="name">Parent</field>
+        <field name="model">school.parents</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" string="Name" />
+                <field name="phone" string="Phone" />
+                <field name="his_children" string="His Children" widget="many2many_tags" />
+                <field name="nationality" string="Nationality" />
+                <field name="national_id" string="National ID" />
+                <field name="email" string="Email" />
+                <field name="gender" string="Gender" />
+            </tree>
+        </field>
+    </record>
+
+    <!-- School Parent Form View  -->
+    <record id="school_parent_view_form" model="ir.ui.view">
+        <field name="name">Parents</field>
+        <field name="model">school.parents</field>
+        <field name="arch" type="xml">
+            <form string="Parents">
+                <header>
+                    <button string="Create Parent User"
+                            name="create_parent_user" 
+                            type="object" 
+                            class="oe_highlight"/>
+                </header>
+                <sheet>
+                    <group>
+                      <group>
+                        <field name="parent_picture" string="Parent Picture" widget="image" />
+                      </group>
+                      <group>
+                        <field name="name" string="Name" />
+                        <field name="phone" />
+                        <field name="national_id" string="National ID" />
+                        <field name="nationality" />
+                        <field name="email" placeholder="Email ..." />
+                        <field name="gender" string="Gender" />
+                        <field name="his_children" widget="many2many_tags" />
+                        <field name="user_id" />
+                      </group>
+                      <group>
+                        <label for="address_countery" string="Address" />
+                            <div class="adress_format">
+                                <field name="address_countery">Address Countery</field>
+                                <field name="address_state" placeholder="State...."  style="width: 40%" >State</field>
+                                <field name="address_street" placeholder="Street...." style="width: 40%" ></field>
+                                <field name="address_house_num" placeholder="House Number...." style="width: 40%"></field>
+                            </div>
+                      </group>  
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- School parent Kanban View -->
+    <record id="school_parent_view_kanban" model="ir.ui.view">
+        <field name="name">Parents</field>
+        <field name="model">school.parents</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <field name="id" />
+                <field name="name" />
+                <field name="parent_picture" />
+                <field name="phone" />
+                <field name="gender" />
+                <field name="email" />
+                <templates>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="oe_kanban_global_click o_res_partner_kanban">
+                                <div class="o_kanban_image">
+                                    <t t-if="record.parent_picture.value">
+                                        <img t-att-src="kanban_image('school.parents', 'parent_picture', record.id.value)" alt="Student"/>
+                                    </t>
+                                    <t t-if="!record.parent_picture.value">
+                                        <img t-att-src="_s + &quot;/base/static/img/avatar.png&quot;" alt="Student"/>
+                                    </t>
+                                </div>
+                                <div class="oe_kanban_details">
+                                    <h4>
+                                        <a type="open">
+                                            <field name="name"/>
+                                        </a>
+                                    </h4>
+                                    <ul>
+                                        <li t-if="record.gender.raw_value">
+                                            <field name="gender"/>
+                                        </li>
+                                        <li t-if="record.phone.raw_value">
+                                            <field name="phone"/>
+                                        </li>
+                                        <li t-if="record.email.raw_value">
+                                            <a t-attf-href="mailto:#{record.email.value}">
+                                                <field name="email"/>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+</odoo>
